@@ -85,9 +85,9 @@ export function BlockConditioning({ block, isExpanded, onToggle }: BlockConditio
                   </span>
                   <span style={{ fontSize: "13px", fontWeight: 500 }}>{ex.exercise.name}</span>
                   <GifButton
-                    exerciseDbId={ex.exercise.exerciseDbId}
+                    gifId={ex.exercise.gifId}
                     exerciseName={ex.exercise.name}
-                    onOpen={() => setGifEx({ name: ex.exercise.name, id: ex.exercise.exerciseDbId! })}
+                    onOpen={() => setGifEx({ name: ex.exercise.name, id: ex.exercise.gifId! })}
                   />
                 </div>
                 <div style={{ fontSize: "12px", color: "var(--color-text-info)", fontWeight: 500 }}>
@@ -104,7 +104,7 @@ export function BlockConditioning({ block, isExpanded, onToggle }: BlockConditio
         </div>
       </div>
 
-      {gifEx && <GifModal exerciseName={gifEx.name} exerciseDbId={gifEx.id} onClose={() => setGifEx(null)} />}
+      {gifEx && <GifModal exerciseName={gifEx.name} gifId={gifEx.id} onClose={() => setGifEx(null)} />}
     </div>
   );
 }

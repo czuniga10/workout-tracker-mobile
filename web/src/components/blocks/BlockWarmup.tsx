@@ -103,9 +103,9 @@ export function BlockWarmup({ block, isExpanded, onToggle }: BlockWarmupProps) {
                 <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "2px" }}>
                   <span style={{ fontSize: "13px", fontWeight: 500 }}>{ex.exercise.name}</span>
                   <GifButton
-                    exerciseDbId={ex.exercise.exerciseDbId}
+                    gifId={ex.exercise.gifId}
                     exerciseName={ex.exercise.name}
-                    onOpen={() => setGifEx({ name: ex.exercise.name, id: ex.exercise.exerciseDbId! })}
+                    onOpen={() => setGifEx({ name: ex.exercise.name, id: ex.exercise.gifId! })}
                   />
                 </div>
                 <div style={{ fontSize: "11px", color: "var(--color-text-secondary)" }}>
@@ -121,7 +121,7 @@ export function BlockWarmup({ block, isExpanded, onToggle }: BlockWarmupProps) {
       {gifEx && (
         <GifModal
           exerciseName={gifEx.name}
-          exerciseDbId={gifEx.id}
+          gifId={gifEx.id}
           onClose={() => setGifEx(null)}
         />
       )}

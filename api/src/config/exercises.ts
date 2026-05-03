@@ -7,7 +7,7 @@ export const exercises: Record<string, Exercise> = {
     muscleGroup: "shoulders",
     type: "weighted",
     equipment: "Adjustable bench + dumbbells",
-    exerciseDbId: "0404",
+    gifId: "0404",
     description: "The dumbbell seated shoulder press is a strength exercise targeting the deltoid muscles of the shoulders. It is performed while seated, pressing dumbbells overhead to build shoulder and upper arm strength.",
     instructions: [
       "Sit on a bench with a dumbbell in each hand, resting on your thighs.",
@@ -23,7 +23,7 @@ export const exercises: Record<string, Exercise> = {
     muscleGroup: "shoulders",
     type: "weighted",
     equipment: "Functional trainer, low pulley",
-    exerciseDbId: "0178",
+    gifId: "0178",
     description: "The cable lateral raise is an isolation exercise that targets the deltoid muscles, particularly the lateral (middle) head. It is performed using a cable machine, which provides constant tension throughout the movement.",
     instructions: [
       "Stand with your feet shoulder-width apart and grasp the cable handles with an overhand grip.",
@@ -39,7 +39,7 @@ export const exercises: Record<string, Exercise> = {
     muscleGroup: "shoulders",
     type: "weighted",
     equipment: "Smith machine",
-    exerciseDbId: "0120",
+    gifId: "0120",
     description: "The smith upright row targets the deltoids and also engages the traps and biceps. It involves pulling a barbell upwards towards the chin while keeping the elbows higher than the wrists.",
     instructions: [
       "Stand with your feet shoulder-width apart, facing the smith machine.",
@@ -56,7 +56,7 @@ export const exercises: Record<string, Exercise> = {
     muscleGroup: "rear delts",
     type: "weighted",
     equipment: "Functional trainer, high pulley",
-    exerciseDbId: "0202",
+    gifId: "0202",
     description: "The cable rear delt fly targets the rear deltoids, with secondary emphasis on the trapezius, rhomboids, and biceps. It uses a cable machine to provide constant tension throughout the movement.",
     instructions: [
       "Attach a rope handle to a low pulley cable machine.",
@@ -74,7 +74,7 @@ export const exercises: Record<string, Exercise> = {
     muscleGroup: "biceps",
     type: "weighted",
     equipment: "Adjustable bench + dumbbells",
-    exerciseDbId: "0317",
+    gifId: "0317",
     description: "The dumbbell incline biceps curl is performed on an incline bench to increase the stretch and activation of the biceps muscle. It also engages the forearms as secondary muscles.",
     instructions: [
       "Sit on an incline bench with a dumbbell in each hand, palms facing forward, and arms fully extended.",
@@ -91,7 +91,7 @@ export const exercises: Record<string, Exercise> = {
     muscleGroup: "triceps",
     type: "weighted",
     equipment: "Functional trainer, low pulley",
-    exerciseDbId: "0194",
+    gifId: "0194",
     description: "The cable overhead triceps extension targets the triceps using a cable machine and rope attachment. It requires extending the arms overhead, emphasizing the long head of the triceps.",
     instructions: [
       "Attach a rope to a cable machine at a high position.",
@@ -109,7 +109,7 @@ export const exercises: Record<string, Exercise> = {
     muscleGroup: "biceps",
     type: "weighted",
     equipment: "Dumbbells",
-    exerciseDbId: "0312",
+    gifId: "0312",
     description: "The dumbbell hammer curl targets the biceps and forearms using a neutral grip (palms facing each other), which emphasizes the brachialis and brachioradialis muscles.",
     instructions: [
       "Stand up straight with a dumbbell in each hand, palms facing your torso.",
@@ -127,7 +127,7 @@ export const exercises: Record<string, Exercise> = {
     muscleGroup: "triceps",
     type: "weighted",
     equipment: "Functional trainer, rope attachment",
-    exerciseDbId: "0200",
+    gifId: "0200",
     description: "The cable pushdown with rope attachment is an isolation exercise targeting the triceps. It focuses on extending the elbows to work the triceps while also engaging the forearms.",
     instructions: [
       "Attach a rope attachment to a high pulley on a cable machine.",
@@ -145,7 +145,7 @@ export const exercises: Record<string, Exercise> = {
     muscleGroup: "quads",
     type: "weighted",
     equipment: "Squat station",
-    exerciseDbId: null,
+    gifId: null,
     description: "The barbell back squat is a compound lower body exercise that primarily targets the quads and glutes, with significant involvement from the hamstrings, calves, and core.",
     instructions: [
       "Stand with your feet shoulder-width apart, toes slightly turned out.",
@@ -162,7 +162,7 @@ export const exercises: Record<string, Exercise> = {
     muscleGroup: "hamstrings",
     type: "weighted",
     equipment: "Dumbbells",
-    exerciseDbId: "1459",
+    gifId: "1459",
     description: "The dumbbell Romanian deadlift targets the glutes, hamstrings, and lower back. It involves hinging at the hips while holding dumbbells, emphasizing posterior chain development.",
     instructions: [
       "Stand with your feet shoulder-width apart, holding a dumbbell in each hand with an overhand grip.",
@@ -178,7 +178,7 @@ export const exercises: Record<string, Exercise> = {
     muscleGroup: "quads",
     type: "weighted",
     equipment: "Adjustable bench leg extension attachment",
-    exerciseDbId: "0585",
+    gifId: "0585",
     description: "The leg extension is an isolation exercise that targets the quadriceps. It involves extending the knees to lift a weight, primarily working the front of the thighs.",
     instructions: [
       "Adjust the seat height and backrest of the machine to fit your body.",
@@ -195,7 +195,7 @@ export const exercises: Record<string, Exercise> = {
     muscleGroup: "quads",
     type: "weighted",
     equipment: "Adjustable bench + dumbbells",
-    exerciseDbId: null,
+    gifId: null,
     description: "The dumbbell Bulgarian split squat is a unilateral lower body exercise that targets the quadriceps, with secondary emphasis on the glutes and hamstrings. One leg is elevated on a bench.",
     instructions: [
       "Stand with your feet shoulder-width apart, holding a dumbbell in each hand.",
@@ -212,7 +212,7 @@ export const exercises: Record<string, Exercise> = {
     muscleGroup: "glutes",
     type: "weighted",
     equipment: "Functional trainer, low pulley",
-    exerciseDbId: "0196",
+    gifId: "0196",
     description: "The cable pull through is a hip hinge exercise that targets the glutes, with secondary emphasis on the hamstrings and lower back. It focuses on hip extension and posterior chain activation.",
     instructions: [
       "Stand facing away from the cable machine with your feet shoulder-width apart.",
@@ -228,7 +228,7 @@ export const exercises: Record<string, Exercise> = {
     muscleGroup: "core",
     type: "weighted",
     equipment: "Functional trainer, high pulley",
-    exerciseDbId: "0175",
+    gifId: "0175",
     description: "The cable kneeling crunch targets the abs and obliques using a cable machine with a rope attachment. It involves kneeling and crunching the torso down towards the thighs.",
     instructions: [
       "Attach a rope handle to a high pulley and kneel down facing away from the machine.",
@@ -244,7 +244,7 @@ export const exercises: Record<string, Exercise> = {
     muscleGroup: "core",
     type: "timed",
     equipment: "Bodyweight",
-    exerciseDbId: "0464",
+    gifId: "0464",
     description: "The plank is a core stability exercise that challenges the abs, obliques, shoulders, and glutes. Hold a rigid straight-line position from head to heel.",
     instructions: [
       "Start in a forearm plank position with your elbows directly under your shoulders.",
@@ -260,7 +260,7 @@ export const exercises: Record<string, Exercise> = {
     muscleGroup: "chest",
     type: "weighted",
     equipment: "Squat/bench station",
-    exerciseDbId: "0025",
+    gifId: "0025",
     description: "The barbell bench press is a classic compound exercise that primarily targets the pectoral muscles, while also engaging the triceps and shoulders.",
     instructions: [
       "Lie flat on a bench with your feet flat on the ground and your back pressed against the bench.",
@@ -278,7 +278,7 @@ export const exercises: Record<string, Exercise> = {
     muscleGroup: "back",
     type: "weighted",
     equipment: "Adjustable bench + dumbbell",
-    exerciseDbId: "0293",
+    gifId: "0293",
     description: "The dumbbell one arm bent-over row targets the upper back, with secondary emphasis on the biceps and forearms. It involves hinging at the hips and pulling a dumbbell towards the chest.",
     instructions: [
       "Stand with your feet shoulder-width apart, holding a dumbbell in one hand with your palm facing your body.",
@@ -295,7 +295,7 @@ export const exercises: Record<string, Exercise> = {
     muscleGroup: "chest",
     type: "weighted",
     equipment: "Adjustable bench + dumbbells",
-    exerciseDbId: "0314",
+    gifId: "0314",
     description: "The dumbbell incline bench press targets the upper portion of the pectoral muscles, with additional emphasis on the shoulders and triceps. It is performed on an incline bench.",
     instructions: [
       "Set up an incline bench at a 45-degree angle.",
@@ -312,7 +312,7 @@ export const exercises: Record<string, Exercise> = {
     muscleGroup: "back",
     type: "weighted",
     equipment: "Functional trainer, low pulley",
-    exerciseDbId: "0861",
+    gifId: "0861",
     description: "The cable low seated row targets the upper back and also engages the biceps and forearms. The movement involves pulling the cable handles toward the torso while squeezing the shoulder blades together.",
     instructions: [
       "Sit on the machine with your feet flat on the footrests and your knees slightly bent.",
@@ -329,7 +329,7 @@ export const exercises: Record<string, Exercise> = {
     muscleGroup: "chest",
     type: "weighted",
     equipment: "Functional trainer, high pulley",
-    exerciseDbId: "0171",
+    gifId: "0171",
     description: "The cable chest fly targets the pectoral muscles using a cable machine. It emphasizes a wide arc motion to stretch and contract the chest.",
     instructions: [
       "Set the pulleys to shoulder height on both sides of a cable machine.",
@@ -346,7 +346,7 @@ export const exercises: Record<string, Exercise> = {
     muscleGroup: "rear delts",
     type: "weighted",
     equipment: "Functional trainer, high pulley",
-    exerciseDbId: null,
+    gifId: null,
     description: "The cable face pull targets the rear deltoids and external rotators of the shoulder, helping to improve posture and shoulder health.",
     instructions: [
       "Attach a rope to a high pulley cable machine.",
@@ -364,7 +364,7 @@ export const exercises: Record<string, Exercise> = {
     muscleGroup: "full body",
     type: "weighted",
     equipment: "20 lb kettlebell",
-    exerciseDbId: "0549",
+    gifId: "0549",
     description: "The kettlebell swing is a dynamic exercise that targets the glutes and also engages the hamstrings and core. It involves swinging a kettlebell between the legs and up to shoulder height using hip drive.",
     instructions: [
       "Stand with your feet shoulder-width apart, toes pointed slightly outward.",
@@ -381,7 +381,7 @@ export const exercises: Record<string, Exercise> = {
     muscleGroup: "conditioning",
     type: "timed",
     equipment: "Battle rope",
-    exerciseDbId: "0128",
+    gifId: "0128",
     description: "Battle rope alternating waves is a high-intensity conditioning exercise that develops cardiovascular endurance, shoulder strength, and core stability.",
     instructions: [
       "Stand facing the anchor point with feet shoulder-width apart, knees slightly bent.",
@@ -398,7 +398,7 @@ export const exercises: Record<string, Exercise> = {
     muscleGroup: "mobility",
     type: "timed",
     equipment: "Bodyweight",
-    exerciseDbId: null,
+    gifId: null,
     description: "Dynamic stretching and mobility work prepares the body for exercise by increasing blood flow, improving range of motion, and activating key muscle groups.",
     instructions: [
       "Perform leg swings (front-to-back and side-to-side) for 10 reps each leg.",
@@ -415,7 +415,7 @@ export const exercises: Record<string, Exercise> = {
     muscleGroup: "full body",
     type: "weighted",
     equipment: "35 lb kettlebell",
-    exerciseDbId: "0549",
+    gifId: "0549",
     description: "The heavy kettlebell swing develops explosive hip power, glute strength, and cardiovascular conditioning. Same mechanics as the light swing with greater load.",
     instructions: [
       "Stand with your feet shoulder-width apart, toes pointed slightly outward.",
@@ -432,7 +432,7 @@ export const exercises: Record<string, Exercise> = {
     muscleGroup: "conditioning",
     type: "timed",
     equipment: "Battle rope",
-    exerciseDbId: null,
+    gifId: null,
     description: "Battle rope slams are a power-based conditioning exercise targeting the shoulders, core, and full body, building explosive strength and cardiovascular endurance.",
     instructions: [
       "Stand facing the anchor point with feet shoulder-width apart, knees slightly bent.",
@@ -449,7 +449,7 @@ export const exercises: Record<string, Exercise> = {
     muscleGroup: "quads",
     type: "weighted",
     equipment: "35 lb kettlebell",
-    exerciseDbId: "0534",
+    gifId: "0534",
     description: "The kettlebell goblet squat targets the glutes and quadriceps while holding a kettlebell close to the chest, making it great for building strength and improving squat technique.",
     instructions: [
       "Stand with your feet shoulder-width apart, holding a kettlebell close to your chest with both hands.",
@@ -465,7 +465,7 @@ export const exercises: Record<string, Exercise> = {
     muscleGroup: "glutes",
     type: "weighted",
     equipment: "Smith machine, bench",
-    exerciseDbId: null,
+    gifId: null,
     description: "The Smith machine hip thrust is a loaded glute exercise performed with the upper back on a bench and the barbell across the hips. It maximally targets the glutes through hip extension.",
     instructions: [
       "Set the Smith machine bar to a height that allows it to rest across your hips when seated on the floor.",
@@ -482,7 +482,7 @@ export const exercises: Record<string, Exercise> = {
     muscleGroup: "glutes",
     type: "weighted",
     equipment: "Functional trainer, low pulley, ankle strap",
-    exerciseDbId: null,
+    gifId: null,
     description: "The cable glute kickback isolates the glutes through hip extension with constant cable tension. An ankle strap attachment keeps the load on the glute throughout the full range.",
     instructions: [
       "Attach an ankle strap to the low pulley and fasten it around one ankle.",
@@ -499,7 +499,7 @@ export const exercises: Record<string, Exercise> = {
     muscleGroup: "full body",
     type: "weighted",
     equipment: "25 lb kettlebell",
-    exerciseDbId: "0518",
+    gifId: "0518",
     description: "The kettlebell single-arm clean and press is a full-body exercise combining a clean (pulling to the rack position) and an overhead press. It builds coordination, explosive power, and shoulder strength.",
     instructions: [
       "Stand with your feet shoulder-width apart, holding a kettlebell in one hand with an overhand grip.",

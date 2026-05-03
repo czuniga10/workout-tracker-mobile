@@ -12,7 +12,7 @@ export interface ApiExercise {
   muscleGroup: string;
   type: ExerciseType;
   equipment: string;
-  exerciseDbId: string | null;
+  gifId: string | null;
   instructions?: string[];
   description?: string;
 }

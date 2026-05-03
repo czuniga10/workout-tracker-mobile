@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
-import { gifUrl } from "../lib/exerciseDb";
+import { gifUrl } from "../lib/gifs";
 
 interface GifModalProps {
   exerciseName: string;
-  exerciseDbId: string;
+  gifId: string;
   onClose: () => void;
 }
 
-export function GifModal({ exerciseName, exerciseDbId, onClose }: GifModalProps) {
+export function GifModal({ exerciseName, gifId, onClose }: GifModalProps) {
   const [state, setState] = useState<"loading" | "loaded" | "error">("loading");
-  const url = gifUrl(exerciseDbId);
+  const url = gifUrl(gifId);
 
   useEffect(() => {
     setState("loading");

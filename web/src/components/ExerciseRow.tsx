@@ -107,7 +107,7 @@ export function ExerciseRow({ letter, hydratedEx, currentRound, isActive, value,
         <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "1px" }}>
           <span style={{ fontSize: "13px", fontWeight: 500 }}>{exercise.name}</span>
           <GifButton
-            exerciseDbId={exercise.exerciseDbId}
+            gifId={exercise.gifId}
             exerciseName={exercise.name}
             onOpen={() => setGifOpen(true)}
           />
@@ -221,10 +221,10 @@ export function ExerciseRow({ letter, hydratedEx, currentRound, isActive, value,
         </div>
       </div>
 
-      {gifOpen && exercise.exerciseDbId && (
+      {gifOpen && exercise.gifId && (
         <GifModal
           exerciseName={exercise.name}
-          exerciseDbId={exercise.exerciseDbId}
+          gifId={exercise.gifId}
           onClose={() => setGifOpen(false)}
         />
       )}
