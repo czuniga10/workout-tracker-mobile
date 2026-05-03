@@ -1,0 +1,49 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum SessionStatus {
+  scheduled
+  in_progress
+  complete
+}
+
+model WorkoutSession {
+  id          String         @id @default(uuid())
+  userId      String
+  workoutId   String
+  date        DateTime       @db.Date
+  status      SessionStatus  @default(scheduled)
+  notes       String?        @db.Text
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  logs        ExerciseLog[]
+
+  @@unique([userId, date])
+  @@index([userId, workoutId])
+  @@index([userId, status])
+}
+
+model ExerciseLog {
+  id            String         @id @default(uuid())
+  sessionId     String
+  blockId       String
+  exerciseId    String
+  roundNumber   Int
+  weight        Decimal?       @db.Decimal(6, 2)
+  reps          Int?
+  durationSec   Int?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+
+  session       WorkoutSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  @@unique([sessionId, blockId, exerciseId, roundNumber])
+  @@index([sessionId])
+}
