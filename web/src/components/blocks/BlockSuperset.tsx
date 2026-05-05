@@ -103,9 +103,13 @@ type InputValues = Record<string, { weight: string; reps: string; durationSec: s
 
 export function BlockSuperset({ block, date, isExpanded, onToggle, onBlockComplete }: BlockSupersetProps) {
   const blockStatus = getBlockStatus(block);
-  const currentRound = getCurrentRound(block);
-  const [selectedRound, setSelectedRound] = useState(currentRound);
+  const [selectedRound, setSelectedRound] = useState(() => getCurrentRound(block));
   const upsertLog = useUpsertLog(date);
+
+  const selectedRoundIsLogged = block.exercises.every((ex) => {
+    const round = ex.rounds.find((r) => r.roundNumber === selectedRound);
+    return round?.logged != null;
+  });
 
   // Input state per exercise
   const [inputValues, setInputValues] = useState<InputValues>(() => {
@@ -139,6 +143,22 @@ export function BlockSuperset({ block, date, isExpanded, onToggle, onBlockComple
     setInputValues(newValues);
   }, [selectedRound, block]);
 
+  function handleCopyPrevious() {
+    const prevRound = selectedRound - 1;
+    const newValues: InputValues = { ...inputValues };
+    for (const ex of block.exercises) {
+      const prev = ex.rounds.find((r) => r.roundNumber === prevRound);
+      if (prev?.logged) {
+        newValues[ex.exercise.id] = {
+          weight: prev.logged.weight ?? "",
+          reps: prev.logged.reps != null ? String(prev.logged.reps) : "",
+          durationSec: prev.logged.durationSec != null ? String(prev.logged.durationSec) : "",
+        };
+      }
+    }
+    setInputValues(newValues);
+  }
+
   function handleLog() {
     const mutations = block.exercises.map((ex) => {
       const vals = inputValues[ex.exercise.id] ?? { weight: "", reps: "", durationSec: "" };
@@ -154,7 +174,8 @@ export function BlockSuperset({ block, date, isExpanded, onToggle, onBlockComple
     });
 
     Promise.all(mutations).then(() => {
-      // Check if this was the last unfilled round
+      if (selectedRoundIsLogged) return;
+
       const allRoundsDone = block.exercises.every((ex) =>
         ex.rounds.every((r) => r.roundNumber === selectedRound || r.logged !== null)
       );
@@ -249,7 +270,7 @@ export function BlockSuperset({ block, date, isExpanded, onToggle, onBlockComple
         <div style={{ overflow: "hidden", minHeight: 0 }}>
           <div style={{ padding: "0 14px 14px" }}>
             {/* Round selector */}
-            <div style={{ display: "flex", gap: "4px", marginBottom: "14px" }}>
+            <div style={{ display: "flex", gap: "4px", marginBottom: "14px", alignItems: "center" }}>
               {Array.from({ length: block.rounds }, (_, i) => {
                 const r = i + 1;
                 const rs = getRoundStatus(block, r);
@@ -290,6 +311,25 @@ export function BlockSuperset({ block, date, isExpanded, onToggle, onBlockComple
                   </button>
                 );
               })}
+              {selectedRound > 1 && (
+                <button
+                  onClick={handleCopyPrevious}
+                  style={{
+                    background: "none",
+                    border: "none",
+                    borderLeft: "1.5px dashed var(--color-border-tertiary)",
+                    padding: "4px 0 4px 10px",
+                    fontSize: "11px",
+                    color: "var(--color-text-tertiary)",
+                    cursor: "pointer",
+                    fontFamily: "inherit",
+                    whiteSpace: "nowrap",
+                    flexShrink: 0,
+                  }}
+                >
+                  copy R{selectedRound - 1}
+                </button>
+              )}
             </div>
 
             {/* Exercise rows */}
@@ -347,6 +387,26 @@ export function BlockSuperset({ block, date, isExpanded, onToggle, onBlockComple
                 }}
               >
                 Start block
+              </button>
+            ) : selectedRoundIsLogged ? (
+              <button
+                onClick={handleLog}
+                disabled={upsertLog.isPending}
+                style={{
+                  width: "100%",
+                  padding: "11px",
+                  background: "var(--color-text-info)",
+                  color: "white",
+                  border: "none",
+                  borderRadius: "var(--radius-md)",
+                  fontSize: "14px",
+                  fontWeight: 500,
+                  cursor: "pointer",
+                  fontFamily: "inherit",
+                  opacity: upsertLog.isPending ? 0.7 : 1,
+                }}
+              >
+                Update round {selectedRound}
               </button>
             ) : (
               <button

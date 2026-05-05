@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { api } from "../api/client";
 import { monthOf } from "../lib/dates";
+import { useUser } from "./useUser";
 
 interface LogPayload {
   date: string;
@@ -14,6 +15,7 @@ interface LogPayload {
 
 export function useUpsertLog(date: string) {
   const qc = useQueryClient();
+  const { userId } = useUser();
 
   return useMutation({
     mutationFn: (payload: LogPayload) =>
@@ -22,8 +24,8 @@ export function useUpsertLog(date: string) {
         body: JSON.stringify(payload),
       }),
     onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ["session", date] });
-      qc.invalidateQueries({ queryKey: ["calendar", monthOf(date)] });
+      qc.invalidateQueries({ queryKey: ["session", userId, date] });
+      qc.invalidateQueries({ queryKey: ["calendar", userId, monthOf(date)] });
     },
   });
 }
