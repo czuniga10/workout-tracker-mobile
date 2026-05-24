@@ -7,6 +7,7 @@ import { BlockBurnout } from "./blocks/BlockBurnout";
 import { useQueryClient } from "@tanstack/react-query";
 import { monthOf } from "../lib/dates";
 import { useCompleteSession } from "../hooks/useCompleteSession";
+import { useResetSession } from "../hooks/useResetSession";
 import { useUser } from "../hooks/useUser";
 
 interface BlockAccordionProps {
@@ -76,6 +77,7 @@ export function BlockAccordion({ workout, date, sessionStatus }: BlockAccordionP
   const qc = useQueryClient();
   const { userId } = useUser();
   const completeSession = useCompleteSession(date);
+  const resetSession = useResetSession(date);
 
   function handleToggle(id: string) {
     setExpandedId((prev) => (prev === id ? null : id));
@@ -167,27 +169,60 @@ export function BlockAccordion({ workout, date, sessionStatus }: BlockAccordionP
         <div style={{ ...dividerStyle, padding: "14px" }}>
           {(() => {
             const done = sessionStatus === "complete";
-            return (
+            const pending = completeSession.isPending || resetSession.isPending;
+            return done ? (
+              <div style={{ display: "flex", gap: "8px" }}>
+                <div
+                  style={{
+                    flex: 1,
+                    padding: "12px",
+                    borderRadius: "var(--radius-md)",
+                    background: "var(--color-text-success)",
+                    color: "#0a0a0c",
+                    fontSize: "14px",
+                    fontWeight: 600,
+                    textAlign: "center",
+                  }}
+                >
+                  Workout Complete ✓
+                </div>
+                <button
+                  onClick={() => resetSession.mutate()}
+                  disabled={pending}
+                  title="Undo"
+                  style={{
+                    padding: "12px 14px",
+                    borderRadius: "var(--radius-md)",
+                    border: "0.5px solid var(--color-border-tertiary)",
+                    background: "transparent",
+                    color: "var(--color-text-tertiary)",
+                    fontSize: "16px",
+                    cursor: pending ? "not-allowed" : "pointer",
+                    opacity: pending ? 0.6 : 1,
+                  }}
+                >
+                  ↩
+                </button>
+              </div>
+            ) : (
               <button
-                onClick={() => !done && completeSession.mutate()}
-                disabled={completeSession.isPending || done}
+                onClick={() => completeSession.mutate()}
+                disabled={pending}
                 style={{
                   width: "100%",
                   padding: "12px",
                   borderRadius: "var(--radius-md)",
                   border: "none",
-                  background: done
-                    ? "var(--color-text-success)"
-                    : "var(--color-background-success)",
-                  color: done ? "#0a0a0c" : "var(--color-text-success)",
+                  background: "var(--color-background-success)",
+                  color: "var(--color-text-success)",
                   fontSize: "14px",
                   fontWeight: 600,
-                  cursor: done || completeSession.isPending ? "default" : "pointer",
-                  opacity: completeSession.isPending ? 0.6 : 1,
-                  transition: "background 0.2s ease, color 0.2s ease",
+                  cursor: pending ? "not-allowed" : "pointer",
+                  opacity: pending ? 0.6 : 1,
+                  transition: "background 0.2s ease",
                 }}
               >
-                {completeSession.isPending ? "Saving…" : done ? "Workout Complete ✓" : "Finish Workout"}
+                {pending ? "Saving…" : "Finish Workout"}
               </button>
             );
           })()}

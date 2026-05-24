@@ -65,6 +65,30 @@ export const sessionsRoutes: FastifyPluginAsync = async (app) => {
     }
   });
 
+  // POST /api/sessions/:date/reset
+  app.post<{ Params: { date: string } }>("/:date/reset", async (req, reply) => {
+    const userId = (req as any).userId as string;
+    const { date } = req.params;
+
+    let parsedDate: Date;
+    try {
+      parsedDate = parseDate(date);
+    } catch {
+      return reply.code(400).send({ error: "invalid date" });
+    }
+
+    try {
+      await prisma.workoutSession.updateMany({
+        where: { userId, date: parsedDate },
+        data: { status: "scheduled" },
+      });
+      return reply.send({ ok: true });
+    } catch (err) {
+      app.log.error(err);
+      return reply.code(500).send({ error: "internal" });
+    }
+  });
+
   // PUT /api/sessions/:date/notes
   app.put<{ Params: { date: string }; Body: { notes: string } }>(
     "/:date/notes",
