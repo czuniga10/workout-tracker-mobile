@@ -13,6 +13,7 @@ export interface ApiExercise {
   type: ExerciseType;
   equipment: string;
   gifId: string | null;
+  gifUrl?: string;
   instructions?: string[];
   description?: string;
 }

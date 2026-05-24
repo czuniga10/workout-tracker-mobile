@@ -1,11 +1,11 @@
 interface GifButtonProps {
-  gifId: string | null;
+  gifUrl: string | null;
   exerciseName: string;
   onOpen: () => void;
 }
 
-export function GifButton({ gifId, exerciseName, onOpen }: GifButtonProps) {
-  if (!gifId) return null;
+export function GifButton({ gifUrl, exerciseName, onOpen }: GifButtonProps) {
+  if (!gifUrl) return null;
 
   return (
     <button

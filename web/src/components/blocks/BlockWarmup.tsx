@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { HydratedBlock } from "../../api/types";
 import { GifButton } from "../GifButton";
 import { GifModal } from "../GifModal";
+import { resolveGifUrl } from "../../lib/gifs";
 
 interface BlockWarmupProps {
   block: HydratedBlock;
@@ -30,7 +31,7 @@ const ChevronIcon = ({ rotated }: { rotated: boolean }) => (
 );
 
 export function BlockWarmup({ block, isExpanded, onToggle }: BlockWarmupProps) {
-  const [gifEx, setGifEx] = useState<{ name: string; id: string } | null>(null);
+  const [gifEx, setGifEx] = useState<{ name: string; url: string } | null>(null);
 
   const previewNames = block.exercises
     .slice(0, 2)
@@ -103,9 +104,9 @@ export function BlockWarmup({ block, isExpanded, onToggle }: BlockWarmupProps) {
                 <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "2px" }}>
                   <span style={{ fontSize: "13px", fontWeight: 500 }}>{ex.exercise.name}</span>
                   <GifButton
-                    gifId={ex.exercise.gifId}
+                    gifUrl={resolveGifUrl(ex.exercise)}
                     exerciseName={ex.exercise.name}
-                    onOpen={() => setGifEx({ name: ex.exercise.name, id: ex.exercise.gifId! })}
+                    onOpen={() => { const u = resolveGifUrl(ex.exercise); if (u) setGifEx({ name: ex.exercise.name, url: u }); }}
                   />
                 </div>
                 <div style={{ fontSize: "11px", color: "var(--color-text-secondary)" }}>
@@ -121,7 +122,7 @@ export function BlockWarmup({ block, isExpanded, onToggle }: BlockWarmupProps) {
       {gifEx && (
         <GifModal
           exerciseName={gifEx.name}
-          gifId={gifEx.id}
+          url={gifEx.url}
           onClose={() => setGifEx(null)}
         />
       )}

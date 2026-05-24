@@ -17,7 +17,7 @@ export function isWorkoutComplete(workout: Workout, logs: LogEntry[]): boolean {
   const filledLogs = logs.filter(hasValue);
 
   for (const block of workout.blocks) {
-    if (block.type === "warmup") continue;
+    if (block.type === "warmup" || block.type === "conditioning_circuit") continue;
 
     for (const ex of block.exercises) {
       for (let r = 1; r <= block.rounds; r++) {

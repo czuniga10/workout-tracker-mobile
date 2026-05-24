@@ -1,3 +1,6 @@
+import { config } from "dotenv";
+config({ path: "../.env" });
+
 import Fastify from "fastify";
 import { usersRoutes } from "./routes/users";
 import { scheduleRoutes } from "./routes/schedule";

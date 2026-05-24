@@ -3,6 +3,7 @@ import type { HydratedExercise, ExerciseTarget } from "../api/types";
 import { GifButton } from "./GifButton";
 import { GifModal } from "./GifModal";
 import { InstructionsModal } from "./InstructionsModal";
+import { resolveGifUrl } from "../lib/gifs";
 
 interface ExerciseRowProps {
   letter: string;
@@ -57,6 +58,7 @@ export function ExerciseRow({ letter, hydratedEx, currentRound, isActive, value,
   const [gifOpen, setGifOpen] = useState(false);
   const [infoOpen, setInfoOpen] = useState(false);
   const { exercise, target } = hydratedEx;
+  const resolvedGifUrl = resolveGifUrl(exercise);
   const prefillHint = formatPrefill(hydratedEx, currentRound);
   const round = hydratedEx.rounds.find((r) => r.roundNumber === currentRound);
   const isLogged = round?.logged != null;
@@ -107,7 +109,7 @@ export function ExerciseRow({ letter, hydratedEx, currentRound, isActive, value,
         <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "1px" }}>
           <span style={{ fontSize: "13px", fontWeight: 500 }}>{exercise.name}</span>
           <GifButton
-            gifId={exercise.gifId}
+            gifUrl={resolvedGifUrl}
             exerciseName={exercise.name}
             onOpen={() => setGifOpen(true)}
           />
@@ -221,10 +223,10 @@ export function ExerciseRow({ letter, hydratedEx, currentRound, isActive, value,
         </div>
       </div>
 
-      {gifOpen && exercise.gifId && (
+      {gifOpen && resolvedGifUrl && (
         <GifModal
           exerciseName={exercise.name}
-          gifId={exercise.gifId}
+          url={resolvedGifUrl}
           onClose={() => setGifOpen(false)}
         />
       )}

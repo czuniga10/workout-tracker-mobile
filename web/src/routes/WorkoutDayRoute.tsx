@@ -13,7 +13,7 @@ function computeRoundProgress(workout: HydratedWorkout): { completed: number; to
   let completed = 0;
   let total = 0;
   for (const block of workout.blocks) {
-    if (block.type === "warmup") continue;
+    if (block.type === "warmup" || block.type === "conditioning_circuit") continue;
     for (const ex of block.exercises) {
       for (const r of ex.rounds) {
         total++;
@@ -107,7 +107,7 @@ export function WorkoutDayRoute() {
           )}
 
           {/* Block accordion */}
-          <BlockAccordion workout={data.workout} date={dateStr} />
+          <BlockAccordion workout={data.workout} date={dateStr} sessionStatus={data.session.status} />
 
           {/* Notes drawer */}
           <NotesDrawer date={dateStr} initialNotes={data.session.notes} />

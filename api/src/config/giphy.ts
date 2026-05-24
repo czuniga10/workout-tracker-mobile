@@ -1,0 +1,18 @@
+export const giphy = {
+  birdDog:     "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExdzZ0b2x5ZWN5bXVhOTN1OGR5cWl6Nm9vamJlYm1sdDhtZXU4Zjk4YiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l0Nwx7Grs4AOlkTba/giphy.gif",
+  gluteBridge: "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExbXU3c3AzY25qcGdlY3V5bzRtZWM3dGR3aDI3MDB5NHN3dHBlbHhkeSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/krmA7YIhRvwjJYbmrG/giphy.gif",
+  wallSit:     "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ3U4eGhjbnVpN20ycm9vZzkwYXpuMGhhdWw0N2dobTZhOW01emJoNCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/fVq9MXzZEBYEo1c9ad/giphy.gif",
+  squatPulse:  "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZTloeXRhcWtsaWtkeHVtcTM4ODN0cDE2b2s1Nmh3azI4MzRzcmNteSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/P6Q7qAdAbrlXTJ488T/giphy.gif",
+  highKnees:   "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExaHUyYXkyOGllYzQyNXg5YjVuazU3b3RoYmF1M2g4aTdlMWZ4dmhwbiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/lboo9np8SJ58sSlGg8/giphy.gif",
+  plankHold:   "https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3dnU3dzF5cmNtZjNoMzByYzJtemJpNnhtdmNreXVhMXl2d2Q2NjdyaCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/39wjDz1y3UI51qgv4K/giphy.gif",
+  toeTouch:    "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExeDNndjVra2I5ODUzY3RqbGxwOTY0ZTE4bjIyYWp4aG5laW5pbTRrcSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xWYomAYxOIPL5JfhNT/giphy.gif",
+  russianTwist: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWJnanRhcTNscm85Zjd5MTlqN3lwNnFxdXI2d3Rkb21ya3IzeGdvayZlcD12MV9naWZzX3NlYXJjaCZjdD1n/8ZhQhDNeikLb4D1LY5/giphy.gif",
+  fireHydrant:  "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExbHdyMXQzYzZ5YTZoa2c2cGEzM2tyaW5pMjJpeWM5ZjZpbGF6dzY4dSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/14dyKFkj1NLQ40/giphy.gif",
+  pilatesRollUp: "https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3ODVrcW9meHk4Y2I2bG9yNDljd2djN285MTR5d3luMjB3b3JhM29haSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/ZYWYS0w1uyB3h55w9h/giphy.gif",
+  plankJack:              "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ2ZtemthYjJtM3hnNzcybmRmanB0amEwajhnbzBzYWJkMG12eXQ3cyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/2UqZvQq4p9DjTBDVRc/giphy.gif",
+  dbBulgarianSplitSquat: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWN3czVseDliOTNkMGRwNWtkcWhreW14dG1zZWM0ZGtxOXM2bTJtYyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/Q8O1oo9cKR3zbBJA2D/giphy.gif",
+  dbSumoSquat:           "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExN3F4YXJmN3NqdnByaDM3YnRnenRhMDM2dnI0eG96NTUyaWdpazkwZCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3oKIPvcdnW1xs9m5IA/giphy.gif",
+  curtsyLunge:           "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3Mxa2JrYTlhdDZreG9tN3EyNm1yNXR5N3ZjNmpyMmVkMDhqY3d2eiZlcD12MV9naWZzX3JlbGF0ZWQmY3Q9Zw/5e20g4glqOdebj2oMV/giphy.gif",
+  flutterKicks:          "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbTl1dWRnYW9qeWEydHM0a2ozZjRrNmNsYmdubzU5OGR1ODMxb2YzdSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/jbiA1NsHa50OS2MATH/giphy.gif",
+  cableFacePull:         "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZjNmNnl0cXZwY2twazZldWhwbTNod3lycm56M2p2ZGpsamN3b3p2MiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/vw6cHB4JBg2BV7XqPA/giphy.gif",
+} as const;

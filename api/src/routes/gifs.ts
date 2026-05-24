@@ -1,14 +1,12 @@
 import type { FastifyInstance } from "fastify";
 
-const WORKOUTX_KEY = process.env.WORKOUTX_KEY ?? "";
-
 export async function gifsRoutes(app: FastifyInstance) {
   app.get<{ Params: { id: string } }>("/:id", async (req, reply) => {
     const { id } = req.params;
     const url = `https://api.workoutxapp.com/v1/gifs/${encodeURIComponent(id)}.gif`;
 
     const upstream = await fetch(url, {
-      headers: { "X-WorkoutX-Key": WORKOUTX_KEY },
+      headers: { "X-WorkoutX-Key": process.env.WORKOUTX_KEY ?? "" },
     });
 
     if (!upstream.ok) {

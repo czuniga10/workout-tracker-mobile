@@ -2,6 +2,7 @@ import { useState, type CSSProperties } from "react";
 import type { HydratedBlock } from "../../api/types";
 import { GifButton } from "../GifButton";
 import { GifModal } from "../GifModal";
+import { resolveGifUrl } from "../../lib/gifs";
 
 interface BlockConditioningProps {
   block: HydratedBlock;
@@ -38,7 +39,7 @@ function formatTarget(ex: HydratedBlock["exercises"][0]): string {
 }
 
 export function BlockConditioning({ block, isExpanded, onToggle }: BlockConditioningProps) {
-  const [gifEx, setGifEx] = useState<{ name: string; id: string } | null>(null);
+  const [gifEx, setGifEx] = useState<{ name: string; url: string } | null>(null);
 
   const badgeStyle: CSSProperties = {
     fontSize: "11px", padding: "1px 6px", borderRadius: "4px", fontWeight: 500,
@@ -85,9 +86,9 @@ export function BlockConditioning({ block, isExpanded, onToggle }: BlockConditio
                   </span>
                   <span style={{ fontSize: "13px", fontWeight: 500 }}>{ex.exercise.name}</span>
                   <GifButton
-                    gifId={ex.exercise.gifId}
+                    gifUrl={resolveGifUrl(ex.exercise)}
                     exerciseName={ex.exercise.name}
-                    onOpen={() => setGifEx({ name: ex.exercise.name, id: ex.exercise.gifId! })}
+                    onOpen={() => { const u = resolveGifUrl(ex.exercise); if (u) setGifEx({ name: ex.exercise.name, url: u }); }}
                   />
                 </div>
                 <div style={{ fontSize: "12px", color: "var(--color-text-info)", fontWeight: 500 }}>
@@ -104,7 +105,7 @@ export function BlockConditioning({ block, isExpanded, onToggle }: BlockConditio
         </div>
       </div>
 
-      {gifEx && <GifModal exerciseName={gifEx.name} gifId={gifEx.id} onClose={() => setGifEx(null)} />}
+      {gifEx && <GifModal exerciseName={gifEx.name} url={gifEx.url} onClose={() => setGifEx(null)} />}
     </div>
   );
 }

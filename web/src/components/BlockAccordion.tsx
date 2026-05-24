@@ -6,10 +6,13 @@ import { BlockWarmup } from "./blocks/BlockWarmup";
 import { BlockBurnout } from "./blocks/BlockBurnout";
 import { useQueryClient } from "@tanstack/react-query";
 import { monthOf } from "../lib/dates";
+import { useCompleteSession } from "../hooks/useCompleteSession";
+import { useUser } from "../hooks/useUser";
 
 interface BlockAccordionProps {
   workout: HydratedWorkout;
   date: string;
+  sessionStatus?: "scheduled" | "in_progress" | "complete";
 }
 
 type BlockStatus = "not_started" | "in_progress" | "complete";
@@ -31,13 +34,13 @@ function getBlockStatus(exercises: HydratedWorkout["blocks"][0]["exercises"]): B
 function getInitialOpenBlock(workout: HydratedWorkout): string | null {
   // 1. Find first in_progress block
   for (const block of workout.blocks) {
-    if (block.type === "warmup") continue;
+    if (block.type === "warmup" || block.type === "conditioning_circuit") continue;
     const status = getBlockStatus(block.exercises);
     if (status === "in_progress") return block.id;
   }
   // 2. Find first not_started block
   for (const block of workout.blocks) {
-    if (block.type === "warmup") continue;
+    if (block.type === "warmup" || block.type === "conditioning_circuit") continue;
     const status = getBlockStatus(block.exercises);
     if (status === "not_started") return block.id;
   }
@@ -47,7 +50,7 @@ function getInitialOpenBlock(workout: HydratedWorkout): string | null {
 function findNextIncompleteBlock(workout: HydratedWorkout, currentBlockId: string): string | null {
   let found = false;
   for (const block of workout.blocks) {
-    if (block.type === "warmup") continue;
+    if (block.type === "warmup" || block.type === "conditioning_circuit") continue;
     if (block.id === currentBlockId) {
       found = true;
       continue;
@@ -59,12 +62,20 @@ function findNextIncompleteBlock(workout: HydratedWorkout, currentBlockId: strin
   return null;
 }
 
-export function BlockAccordion({ workout, date }: BlockAccordionProps) {
+function isCircuitOnly(workout: HydratedWorkout): boolean {
+  return workout.blocks
+    .filter((b) => b.type !== "warmup")
+    .every((b) => b.type === "conditioning_circuit");
+}
+
+export function BlockAccordion({ workout, date, sessionStatus }: BlockAccordionProps) {
   const [expandedId, setExpandedId] = useState<string | null>(() =>
     getInitialOpenBlock(workout)
   );
 
   const qc = useQueryClient();
+  const { userId } = useUser();
+  const completeSession = useCompleteSession(date);
 
   function handleToggle(id: string) {
     setExpandedId((prev) => (prev === id ? null : id));
@@ -72,8 +83,8 @@ export function BlockAccordion({ workout, date }: BlockAccordionProps) {
 
   function handleBlockComplete(blockId: string) {
     // Re-fetch session to get updated log data
-    qc.invalidateQueries({ queryKey: ["session", date] });
-    qc.invalidateQueries({ queryKey: ["calendar", monthOf(date)] });
+    qc.invalidateQueries({ queryKey: ["session", userId, date] });
+    qc.invalidateQueries({ queryKey: ["calendar", userId, monthOf(date)] });
 
     // For auto-advance, find next incomplete block
     const nextBlockId = findNextIncompleteBlock(workout, blockId);
@@ -149,6 +160,37 @@ export function BlockAccordion({ workout, date }: BlockAccordionProps) {
             isExpanded={expandedId === "__burnout__"}
             onToggle={() => handleToggle("__burnout__")}
           />
+        </div>
+      )}
+
+      {isCircuitOnly(workout) && (
+        <div style={{ ...dividerStyle, padding: "14px" }}>
+          {(() => {
+            const done = sessionStatus === "complete";
+            return (
+              <button
+                onClick={() => !done && completeSession.mutate()}
+                disabled={completeSession.isPending || done}
+                style={{
+                  width: "100%",
+                  padding: "12px",
+                  borderRadius: "var(--radius-md)",
+                  border: "none",
+                  background: done
+                    ? "var(--color-text-success)"
+                    : "var(--color-background-success)",
+                  color: done ? "#0a0a0c" : "var(--color-text-success)",
+                  fontSize: "14px",
+                  fontWeight: 600,
+                  cursor: done || completeSession.isPending ? "default" : "pointer",
+                  opacity: completeSession.isPending ? 0.6 : 1,
+                  transition: "background 0.2s ease, color 0.2s ease",
+                }}
+              >
+                {completeSession.isPending ? "Saving…" : done ? "Workout Complete ✓" : "Finish Workout"}
+              </button>
+            );
+          })()}
         </div>
       )}
     </div>

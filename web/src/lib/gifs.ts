@@ -1,3 +1,5 @@
-export function gifUrl(gifId: string): string {
-  return `/api/gifs/${gifId}`;
+export function resolveGifUrl(exercise: { gifId: string | null; gifUrl?: string }): string | null {
+  if (exercise.gifUrl) return exercise.gifUrl;
+  if (exercise.gifId) return `/api/gifs/${exercise.gifId}`;
+  return null;
 }

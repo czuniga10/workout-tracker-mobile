@@ -7,6 +7,7 @@ export interface Exercise {
   type: ExerciseType;
   equipment: string;
   gifId: string | null;
+  gifUrl?: string;
   instructions?: string[];
   description?: string;
 }

@@ -26,6 +26,45 @@ export const sessionsRoutes: FastifyPluginAsync = async (app) => {
     }
   });
 
+  // POST /api/sessions/:date/complete
+  app.post<{ Params: { date: string } }>("/:date/complete", async (req, reply) => {
+    const userId = (req as any).userId as string;
+    const { date } = req.params;
+
+    let parsedDate: Date;
+    try {
+      parsedDate = parseDate(date);
+    } catch {
+      return reply.code(400).send({ error: "invalid date" });
+    }
+
+    try {
+      const schedule = getScheduleForUser(userId);
+      const dow = getDayOfWeek(parsedDate);
+      const scheduleDay = schedule.days[dow];
+
+      if (!scheduleDay.workoutId) {
+        return reply.code(404).send({ error: "not found" });
+      }
+
+      await prisma.workoutSession.upsert({
+        where: { userId_date: { userId, date: parsedDate } },
+        update: { status: "complete" },
+        create: {
+          userId,
+          workoutId: scheduleDay.workoutId,
+          date: parsedDate,
+          status: "complete",
+        },
+      });
+
+      return reply.send({ ok: true });
+    } catch (err) {
+      app.log.error(err);
+      return reply.code(500).send({ error: "internal" });
+    }
+  });
+
   // PUT /api/sessions/:date/notes
   app.put<{ Params: { date: string }; Body: { notes: string } }>(
     "/:date/notes",

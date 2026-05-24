@@ -37,7 +37,7 @@ export const conditioningA: Workout = {
       priority: "accessories",
       exercises: [
         { exerciseId: "cable-lateral-raise-low", target: { type: "reps", value: 15 } },
-        { exerciseId: "db-incline-curl",         target: { type: "reps", value: 12 } },
+        { exerciseId: "lying-cable-curl",          target: { type: "reps", value: 12 } },
       ],
     },
     {
