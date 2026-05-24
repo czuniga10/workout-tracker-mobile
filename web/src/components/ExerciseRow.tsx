@@ -3,6 +3,7 @@ import type { HydratedExercise, ExerciseTarget } from "../api/types";
 import { GifButton } from "./GifButton";
 import { GifModal } from "./GifModal";
 import { InstructionsModal } from "./InstructionsModal";
+import { ExerciseTimer } from "./ExerciseTimer";
 import { resolveGifUrl } from "../lib/gifs";
 
 interface ExerciseRowProps {
@@ -12,6 +13,7 @@ interface ExerciseRowProps {
   isActive: boolean;
   value: { weight: string; reps: string; durationSec: string };
   onChange: (field: "weight" | "reps" | "durationSec", val: string) => void;
+  onTimerComplete?: (seconds: number) => void;
 }
 
 function formatTarget(target: ExerciseTarget): string {
@@ -54,7 +56,12 @@ const inputStyle: CSSProperties = {
   outline: "none",
 };
 
-export function ExerciseRow({ letter, hydratedEx, currentRound, isActive, value, onChange }: ExerciseRowProps) {
+function getTargetSeconds(target: ExerciseTarget): number {
+  if (target.type !== "time") return 0;
+  return "seconds" in target ? target.seconds : target.maxSeconds;
+}
+
+export function ExerciseRow({ letter, hydratedEx, currentRound, isActive, value, onChange, onTimerComplete }: ExerciseRowProps) {
   const [gifOpen, setGifOpen] = useState(false);
   const [infoOpen, setInfoOpen] = useState(false);
   const { exercise, target } = hydratedEx;
@@ -199,23 +206,12 @@ export function ExerciseRow({ letter, hydratedEx, currentRound, isActive, value,
           )}
           {showDuration && (
             <div style={{ flex: 1 }}>
-              <label style={{ fontSize: "11px", color: "var(--color-text-tertiary)", display: "block", marginBottom: "2px" }}>
-                Duration (s)
-              </label>
-              <input
-                type="text"
-                inputMode="numeric"
-                value={value.durationSec}
-                placeholder={getPrefillPlaceholder("durationSec")}
-                onChange={(e) => onChange("durationSec", e.target.value)}
-                style={inputStyle}
-                onFocus={(e) => {
-                  e.target.style.borderColor = "var(--color-border-info)";
-                  e.target.style.boxShadow = "0 0 0 2px var(--color-background-info)";
-                }}
-                onBlur={(e) => {
-                  e.target.style.borderColor = "var(--color-border-tertiary)";
-                  e.target.style.boxShadow = "none";
+              <ExerciseTimer
+                key={`${currentRound}-${isLogged}`}
+                targetSeconds={getTargetSeconds(target)}
+                onComplete={(secs) => {
+                  onChange("durationSec", String(secs));
+                  onTimerComplete?.(secs);
                 }}
               />
             </div>

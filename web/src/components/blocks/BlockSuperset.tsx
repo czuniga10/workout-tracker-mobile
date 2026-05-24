@@ -159,9 +159,9 @@ export function BlockSuperset({ block, date, isExpanded, onToggle, onBlockComple
     setInputValues(newValues);
   }
 
-  function handleLog() {
+  function logWithValues(values: InputValues) {
     const mutations = block.exercises.map((ex) => {
-      const vals = inputValues[ex.exercise.id] ?? { weight: "", reps: "", durationSec: "" };
+      const vals = values[ex.exercise.id] ?? { weight: "", reps: "", durationSec: "" };
       return upsertLog.mutateAsync({
         date,
         blockId: block.id,
@@ -186,6 +186,19 @@ export function BlockSuperset({ block, date, isExpanded, onToggle, onBlockComple
         setSelectedRound((r) => r + 1);
       }
     });
+  }
+
+  function handleLog() {
+    logWithValues(inputValues);
+  }
+
+  function handleTimerComplete(exId: string, seconds: number) {
+    const updated = {
+      ...inputValues,
+      [exId]: { ...inputValues[exId], durationSec: String(seconds) },
+    };
+    setInputValues(updated);
+    logWithValues(updated);
   }
 
   const badgeStyle = (status: BlockStatus): CSSProperties => {
@@ -347,6 +360,7 @@ export function BlockSuperset({ block, date, isExpanded, onToggle, onBlockComple
                       [ex.exercise.id]: { ...prev[ex.exercise.id], [field]: val },
                     }))
                   }
+                  onTimerComplete={(secs) => handleTimerComplete(ex.exercise.id, secs)}
                 />
                 {/* Superset divider between exercises */}
                 {block.type === "superset" && idx < block.exercises.length - 1 && (

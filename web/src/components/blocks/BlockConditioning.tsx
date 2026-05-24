@@ -2,7 +2,14 @@ import { useState, type CSSProperties } from "react";
 import type { HydratedBlock } from "../../api/types";
 import { GifButton } from "../GifButton";
 import { GifModal } from "../GifModal";
+import { ExerciseTimer } from "../ExerciseTimer";
 import { resolveGifUrl } from "../../lib/gifs";
+
+function getTargetSeconds(ex: HydratedBlock["exercises"][0]): number | null {
+  const t = ex.target;
+  if (t.type !== "time") return null;
+  return "seconds" in t ? t.seconds : t.maxSeconds;
+}
 
 interface BlockConditioningProps {
   block: HydratedBlock;
@@ -91,9 +98,17 @@ export function BlockConditioning({ block, isExpanded, onToggle }: BlockConditio
                     onOpen={() => { const u = resolveGifUrl(ex.exercise); if (u) setGifEx({ name: ex.exercise.name, url: u }); }}
                   />
                 </div>
-                <div style={{ fontSize: "12px", color: "var(--color-text-info)", fontWeight: 500 }}>
+                <div style={{ fontSize: "12px", color: "var(--color-text-info)", fontWeight: 500, marginBottom: getTargetSeconds(ex) !== null ? "8px" : "0" }}>
                   {formatTarget(ex)}
                 </div>
+                {(() => {
+                  const secs = getTargetSeconds(ex);
+                  return secs !== null ? (
+                    <div style={{ marginBottom: ex.notes ? "4px" : "0" }}>
+                      <ExerciseTimer key={ex.exercise.id} targetSeconds={secs} onComplete={() => {}} />
+                    </div>
+                  ) : null;
+                })()}
                 {ex.notes && (
                   <div style={{ fontSize: "11px", color: "var(--color-text-tertiary)", marginTop: "2px" }}>
                     {ex.notes}
