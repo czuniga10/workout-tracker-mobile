@@ -5,7 +5,10 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/server.js",
-    "dev": "tsx watch src/server.ts"
+    "dev": "tsx watch src/server.ts",
+    "prisma:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "db:deploy": "prisma migrate deploy"
   },
   "dependencies": {
     "@prisma/client": "^5.18.0",
