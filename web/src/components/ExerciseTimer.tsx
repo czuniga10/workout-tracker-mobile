@@ -7,6 +7,27 @@ function getAudioContext(): AudioContext {
   return sharedCtx;
 }
 
+function playBeep() {
+  const ctx = getAudioContext();
+  ctx.resume().then(() => {
+    const o = ctx.createOscillator();
+    const g = ctx.createGain();
+    const compressor = ctx.createDynamicsCompressor();
+    const booster = ctx.createGain();
+    booster.gain.value = 3.0;
+    o.connect(g);
+    g.connect(compressor);
+    compressor.connect(booster);
+    booster.connect(ctx.destination);
+    o.frequency.value = 880;
+    const t = ctx.currentTime;
+    g.gain.setValueAtTime(1.0, t);
+    g.gain.exponentialRampToValueAtTime(0.001, t + 0.15);
+    o.start(t);
+    o.stop(t + 0.15);
+  });
+}
+
 function playChime() {
   const ctx = getAudioContext();
   ctx.resume().then(() => {
@@ -84,6 +105,12 @@ export function ExerciseTimer({ targetSeconds, onComplete }: ExerciseTimerProps)
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
   }, [timerState]);
+
+  useEffect(() => {
+    if (timerState === "running" && remaining >= 1 && remaining <= 3) {
+      playBeep();
+    }
+  }, [remaining, timerState]);
 
   useEffect(() => {
     if (timerState === "done" && !completedRef.current) {
