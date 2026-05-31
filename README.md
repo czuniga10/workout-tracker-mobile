@@ -18,6 +18,9 @@ First-time setup (installs deps, brings up Postgres, applies migrations):
 
 ```bash
 cp .env.example .env
+# Edit .env with your WORKOUTX_KEY
+cp api/.env.example api/.env
+# Edit api/.env with your WORKOUTX_KEY
 npm run setup
 ```
 
