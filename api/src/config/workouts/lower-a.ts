@@ -3,8 +3,8 @@ import type { Workout } from "../../types";
 export const lowerA: Workout = {
   id: "lower",
   name: "Lower",
-  focus: "Quads, glutes & core",
-  notes: "Rest 75–90s between supersets — legs need more recovery. ATG or just below parallel on squats.",
+  focus: "Hamstrings, glutes & core",
+  notes: "Rest 75–90s between supersets — legs need more recovery. Controlled eccentric on all movements.",
   blocks: [
     {
       id: "block-1",
@@ -12,7 +12,7 @@ export const lowerA: Workout = {
       rounds: 4,
       restSeconds: 90,
       exercises: [
-        { exerciseId: "barbell-back-squat", target: { type: "reps", value: 8 }, notes: "Primary compound. RPE 8." },
+        { exerciseId: "barbell-romanian-deadlift", target: { type: "reps", value: 8 }, notes: "Primary compound. RPE 8. Posterior chain dominant." },
       ],
     },
     {
@@ -21,8 +21,8 @@ export const lowerA: Workout = {
       rounds: 3,
       restSeconds: 75,
       exercises: [
-        { exerciseId: "db-romanian-deadlift", target: { type: "reps", value: 10 } },
-        { exerciseId: "leg-extension",        target: { type: "reps", value: 12 } },
+        { exerciseId: "leg-curl",      target: { type: "reps", value: 12 } },
+        { exerciseId: "leg-extension", target: { type: "reps", value: 12 } },
       ],
     },
     {
@@ -31,8 +31,8 @@ export const lowerA: Workout = {
       rounds: 3,
       restSeconds: 75,
       exercises: [
-        { exerciseId: "db-bulgarian-split-squat", target: { type: "reps", value: 10, perSide: true } },
-        { exerciseId: "cable-pull-through-low",   target: { type: "reps", value: 15 } },
+        { exerciseId: "db-reverse-lunge", target: { type: "reps", value: 10, perSide: true }, notes: "Glute emphasis on step back" },
+        { exerciseId: "db-hip-thrust",    target: { type: "reps", value: 15 }, notes: "Full glute squeeze at top, controlled lower" },
       ],
     },
     {
@@ -42,13 +42,13 @@ export const lowerA: Workout = {
       restSeconds: 45,
       priority: "core",
       exercises: [
-        { exerciseId: "cable-kneeling-crunch-high", target: { type: "reps", value: 15 } },
-        { exerciseId: "plank-hold",                 target: { type: "time", minSeconds: 45, maxSeconds: 60 } },
+        { exerciseId: "ab-roller", target: { type: "reps", min: 8, max: 12 }, notes: "Slow on the way out, keep lower back flat" },
+        { exerciseId: "dead-bug",  target: { type: "reps", value: 10, perSide: true }, notes: "Anti-extension core, controlled breathing" },
       ],
     },
   ],
   burnout: {
-    name: "Wall Sit into Bodyweight Squat Pulse",
-    description: "Hold a deep wall sit to failure, immediately drop into bodyweight squats pulsing at the bottom — no lockout, stay in the burn zone. Go until you physically cannot continue.",
+    name: "Leg Curl + Leg Extension Drop Set",
+    description: "Leg curl to failure → drop weight → failure again. No rest — immediately move to leg extension, same format: failure → drop → failure. One continuous burnout.",
   },
 };

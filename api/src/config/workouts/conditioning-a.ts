@@ -12,9 +12,9 @@ export const conditioningA: Workout = {
       rounds: 1,
       restSeconds: 0,
       exercises: [
-        { exerciseId: "kb-swing-light",        target: { type: "reps", value: 15 }, notes: "3 sets, easy pace, movement prep" },
-        { exerciseId: "battle-rope-alt-waves", target: { type: "time", seconds: 20 }, notes: "3 rounds" },
-        { exerciseId: "dynamic-mobility",      target: { type: "time", minSeconds: 120, maxSeconds: 180 } },
+        { exerciseId: "jump-rope",              target: { type: "time", seconds: 45 }, notes: "3 rounds, sub jumping jacks if no rope" },
+        { exerciseId: "band-pull-apart",         target: { type: "reps", value: 15 }, notes: "3 rounds" },
+        { exerciseId: "bw-squat-to-hip-opener", target: { type: "reps", value: 10, perSide: true }, notes: "2 rounds — squat down, open each knee out, stand" },
       ],
     },
     {
@@ -23,10 +23,10 @@ export const conditioningA: Workout = {
       rounds: 5,
       restSeconds: 75,
       exercises: [
-        { exerciseId: "kb-swing-heavy",    target: { type: "reps", value: 15 } },
-        { exerciseId: "battle-rope-slams", target: { type: "time", seconds: 20 } },
-        { exerciseId: "kb-goblet-squat",   target: { type: "reps", value: 12 } },
-        { exerciseId: "kb-clean-press",    target: { type: "reps", value: 8, perSide: true } },
+        { exerciseId: "battle-rope-alt-waves", target: { type: "time", seconds: 30 }, notes: "All out" },
+        { exerciseId: "db-thruster",           target: { type: "reps", value: 12 }, notes: "25–35 lb DBs, squat to overhead press" },
+        { exerciseId: "kb-swing-heavy",        target: { type: "reps", value: 15 }, notes: "35 lb, hip-hinge dominant" },
+        { exerciseId: "burpee",                target: { type: "reps", value: 8 } },
       ],
     },
     {
@@ -36,8 +36,8 @@ export const conditioningA: Workout = {
       restSeconds: 60,
       priority: "accessories",
       exercises: [
-        { exerciseId: "cable-lateral-raise-low", target: { type: "reps", value: 15 } },
-        { exerciseId: "lying-cable-curl",          target: { type: "reps", value: 12 } },
+        { exerciseId: "db-arnold-press",  target: { type: "reps", value: 12 } },
+        { exerciseId: "lying-cable-curl", target: { type: "reps", value: 12 } },
       ],
     },
     {
@@ -47,8 +47,8 @@ export const conditioningA: Workout = {
       restSeconds: 60,
       priority: "accessories",
       exercises: [
-        { exerciseId: "cable-face-pull-high",       target: { type: "reps", value: 15 } },
-        { exerciseId: "cable-kneeling-crunch-high", target: { type: "reps", value: 15 } },
+        { exerciseId: "cable-straight-arm-pulldown-high", target: { type: "reps", value: 12 }, notes: "Stand facing stack, arms straight, pull down toward hips" },
+        { exerciseId: "cable-kneeling-crunch-high",       target: { type: "reps", value: 15 } },
       ],
     },
   ],

@@ -9,11 +9,11 @@ export const upperB: Workout = {
     {
       id: "block-1",
       type: "superset",
-      rounds: 4,
+      rounds: 3,
       restSeconds: 60,
       exercises: [
-        { exerciseId: "db-seated-overhead-press", target: { type: "reps", min: 10, max: 12 } },
-        { exerciseId: "cable-lateral-raise-low",  target: { type: "reps", value: 15 } },
+        { exerciseId: "smith-machine-shoulder-press", target: { type: "reps", min: 10, max: 12 } },
+        { exerciseId: "db-lateral-raise",             target: { type: "reps", value: 15 } },
       ],
     },
     {
@@ -22,7 +22,7 @@ export const upperB: Workout = {
       rounds: 3,
       restSeconds: 60,
       exercises: [
-        { exerciseId: "smith-upright-row",        target: { type: "reps", value: 12 } },
+        { exerciseId: "db-arnold-press",          target: { type: "reps", value: 12 } },
         { exerciseId: "cable-rear-delt-fly-high", target: { type: "reps", value: 15 } },
       ],
     },
@@ -33,24 +33,24 @@ export const upperB: Workout = {
       restSeconds: 60,
       priority: "biceps",
       exercises: [
-        { exerciseId: "db-incline-curl",                       target: { type: "reps", value: 12 }, notes: "Long head focus" },
-        { exerciseId: "cable-overhead-tricep-extension-low",   target: { type: "reps", value: 12 } },
+        { exerciseId: "cable-drag-curl",                     target: { type: "reps", value: 12 }, notes: "Long head focus — elbows pinned back throughout" },
+        { exerciseId: "cable-overhead-tricep-extension-low", target: { type: "reps", value: 12 } },
       ],
     },
     {
       id: "block-4",
       type: "superset",
-      rounds: 4,
+      rounds: 3,
       restSeconds: 60,
       priority: "biceps",
       exercises: [
-        { exerciseId: "db-hammer-curl",        target: { type: "reps", value: 12 }, notes: "Brachialis / brachioradialis" },
-        { exerciseId: "cable-tricep-pushdown", target: { type: "reps", value: 12 } },
+        { exerciseId: "db-concentration-curl-single-arm",        target: { type: "reps", value: 12, perSide: true }, notes: "Elbow braced on inner thigh, full supination at top" },
+        { exerciseId: "db-overhead-tricep-extension-single-arm", target: { type: "reps", value: 12, perSide: true } },
       ],
     },
   ],
   burnout: {
-    name: "Cable Curl 21s into DB Curl Death Set",
-    description: "Cable curl: 7 reps bottom→halfway, 7 halfway→top, 7 full range — no rest. Immediately grab the lightest DBs available and curl to absolute failure, slow eccentric on every rep.",
+    name: "DB Bicep Medley + Rack Stretch",
+    description: "3 rounds, no rest between exercises: 12 DB Curls → 12 Hammer Curls → 12 Cross-Body Hammer Curls → 12 Reverse Curls → 30 sec Rack Bicep Stretch. Rest only between rounds if needed.",
   },
 };

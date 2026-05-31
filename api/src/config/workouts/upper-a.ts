@@ -12,8 +12,8 @@ export const upperA: Workout = {
       rounds: 4,
       restSeconds: 60,
       exercises: [
-        { exerciseId: "barbell-bench-press", target: { type: "reps", min: 8, max: 10 } },
-        { exerciseId: "db-single-arm-row",   target: { type: "reps", value: 10, perSide: true } },
+        { exerciseId: "db-bench-press",    target: { type: "reps", min: 8, max: 10 } },
+        { exerciseId: "db-single-arm-row", target: { type: "reps", value: 10, perSide: true } },
       ],
     },
     {
@@ -22,8 +22,8 @@ export const upperA: Workout = {
       rounds: 3,
       restSeconds: 60,
       exercises: [
-        { exerciseId: "db-incline-bench-press", target: { type: "reps", value: 10 } },
-        { exerciseId: "cable-seated-row-low",   target: { type: "reps", value: 12 } },
+        { exerciseId: "db-incline-bench-press",         target: { type: "reps", value: 10 } },
+        { exerciseId: "cable-straight-arm-pulldown-high", target: { type: "reps", value: 12 }, notes: "Stand facing stack, arms straight, pull down toward hips" },
       ],
     },
     {
@@ -32,8 +32,8 @@ export const upperA: Workout = {
       rounds: 3,
       restSeconds: 60,
       exercises: [
-        { exerciseId: "cable-chest-fly-high", target: { type: "reps", min: 12, max: 15 } },
-        { exerciseId: "cable-face-pull-high", target: { type: "reps", value: 15 } },
+        { exerciseId: "cable-low-to-high-fly",                          target: { type: "reps", min: 12, max: 15 }, notes: "Upper chest emphasis" },
+        { exerciseId: "cable-rear-delt-pull-single-arm-kneeling-high",  target: { type: "reps", value: 15, perSide: true }, notes: "Kneeling, high pulley, pull across body to ear height" },
       ],
     },
     {
@@ -47,7 +47,7 @@ export const upperA: Workout = {
     },
   ],
   burnout: {
-    name: "Cable Fly Drop Set into Push-Ups",
-    description: "Set cables to chest height. Rep to failure (~15–20 reps), drop weight 20–25 lbs, rep to failure, one more drop, rep to failure. Immediately drop to the floor and do push-ups to absolute failure.",
+    name: "Cable Fly Tri-Set",
+    description: "No rest between stations: High Cable Fly 15 reps → Middle Cable Fly 15 reps → Low-to-High Cable Fly 15 reps. One continuous tri-set to failure.",
   },
 };
