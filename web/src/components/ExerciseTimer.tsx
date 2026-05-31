@@ -10,18 +10,39 @@ function getAudioContext(): AudioContext {
 function playChime() {
   const ctx = getAudioContext();
   ctx.resume().then(() => {
-    [523, 659, 784].forEach((freq, i) => {
+    const compressor = ctx.createDynamicsCompressor();
+    const booster = ctx.createGain();
+    booster.gain.value = 3.0;
+    compressor.connect(booster);
+    booster.connect(ctx.destination);
+
+    function makeNote(freq: number, t: number, duration: number) {
       const o = ctx.createOscillator();
       const g = ctx.createGain();
       o.connect(g);
-      g.connect(ctx.destination);
+      g.connect(compressor);
       o.frequency.value = freq;
-      const t = ctx.currentTime + i * 0.15;
-      g.gain.setValueAtTime(0.3, t);
-      g.gain.exponentialRampToValueAtTime(0.001, t + 0.2);
+      g.gain.setValueAtTime(1.0, t);
+      g.gain.exponentialRampToValueAtTime(0.001, t + duration);
       o.start(t);
-      o.stop(t + 0.2);
-    });
+      o.stop(t + duration);
+    }
+
+    function playRing(offset: number) {
+      [523, 659, 784].forEach((freq, i) => {
+        makeNote(freq, ctx.currentTime + offset + i * 0.25, 0.4);
+      });
+    }
+
+    function playVictory(offset: number) {
+      [523, 659, 784, 1047, 1047].forEach((freq, i) => {
+        makeNote(freq, ctx.currentTime + offset + i * 0.25, i === 4 ? 0.8 : 0.4);
+      });
+    }
+
+    playRing(0);
+    playRing(1.0);
+    playVictory(2.0);
   });
 }
 
