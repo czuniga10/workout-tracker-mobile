@@ -32,7 +32,7 @@ export const upperA: Workout = {
       rounds: 3,
       restSeconds: 60,
       exercises: [
-        { exerciseId: "cable-low-to-high-fly",                          target: { type: "reps", min: 12, max: 15 }, notes: "Upper chest emphasis" },
+        { exerciseId: "cable-chest-fly-high",                          target: { type: "reps", min: 12, max: 15 }, notes: "Lower chest emphasis" },
         { exerciseId: "cable-rear-delt-pull-single-arm-kneeling-high",  target: { type: "reps", value: 15, perSide: true }, notes: "Kneeling, high pulley, pull across body to ear height" },
       ],
     },
